@@ -1,4 +1,4 @@
-function R = getRadiusCoords(p1,p2)
+function R = getRadius(p1,p2)
     %输入检查，输入的p1和p2需要是一个含有两个元素的数组
     validateattributes(p1,{'numeric'},{'numel',2},'getRadius','p1',1);
     validateattributes(p2,{'numeric'},{'numel',2},'getRadius','p2',2);
