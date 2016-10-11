@@ -5,10 +5,10 @@ function R = unitIntegrate(unit,point)
     %¼ì²é½áÊø
     
     c = [0,0,0,0];
-    c(1) = unit.coords(:,1);
-    c(2) = unit.coords(:,2);
-    c(3) = unit.coords(:,3);
-    c(4) = unit.coords(:,4);
+    c(1) = unit.coords(1,:);
+    c(2) = unit.coords(2,:);
+    c(3) = unit.coords(3,:);
+    c(4) = unit.coords(4,:);
     center = getCenterCoords(c(1), c(2), c(3), c(4));
     
     radius = getRadius(point,center);
