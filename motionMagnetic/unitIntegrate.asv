@@ -4,10 +4,8 @@ function B = unitIntegrate(unit,point)
     validateattributes(point,{'numeric'},{'numel',2},'unitIntegrate','point',2);
     %¼ì²é½áÊø
     
-    EMField = [1,1,1];
-    
+    EMField = [0,0,0];
     Sigma = unit.conductivity;
-    
     Zeta = [0,0,0];
     
     Zeta(1) = sqrt(15)/(-5);
@@ -19,11 +17,12 @@ function B = unitIntegrate(unit,point)
     Ak(2) = 8/9;
     Ak(3) = 5/9;
     
-    c1 = unit.coords(1,:);
-    c2 = unit.coords(2,:);
-    c3 = unit.coords(3,:);
-    c4 = unit.coords(4,:);
-    center = getCenterCoords(c1, c2, c3, c4);
+    c = [0,0,0,0];
+    c(1) = unit.coords(1,:);
+    c(2) = unit.coords(2,:);
+    c(3) = unit.coords(3,:);
+    c(4) = unit.coords(4,:);
+    center = getCenterCoords(c(1), c(2), c(3), c(4));
     
     radius = getRadius(point,center);
     
@@ -31,7 +30,7 @@ function B = unitIntegrate(unit,point)
     nij = length(Zeta);
     for i = 1:nij
         for  j = 1:nij
-            B = B + Ak(i)*Ak(j)*Integrand(Zeta(i),Zeta(j),EMField,unit,radius)*Sigma*(10^-7);
+            R = R + A(i)*A(j)*Integrand(Zeta(i),Zeta(j),EMField,unit,radius)*Sigma*(10^-7);
         end
     end
     
