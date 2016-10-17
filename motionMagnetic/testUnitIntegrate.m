@@ -6,6 +6,7 @@ function setup(testCase)
     testCase.TestData.unit = struct('velocity', [], 'coords', []);
     testCase.TestData.unit.velocity = [1,2;3,4; 5,6;7,8];
     testCase.TestData.unit.coords = [1,1;1,2;-1,2; -1,1];
+    testCase.TestData.unit.conductivity = 3;
     
     testCase.TestData.p = [0,0];
 end
