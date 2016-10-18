@@ -4,7 +4,8 @@ function B = unitIntegrate(unit,point)
     validateattributes(point,{'numeric'},{'numel',2},'unitIntegrate','point',2);
     %检查结束
     
-    EMField = [1,1,1];
+%积分参数    
+    EMField = [1,1,0];
     
     Sigma = unit.conductivity;
     
@@ -18,7 +19,8 @@ function B = unitIntegrate(unit,point)
     Ak(1) = 5/9;
     Ak(2) = 8/9;
     Ak(3) = 5/9;
-    
+%
+
     c1 = unit.coords(1,:);
     c2 = unit.coords(2,:);
     c3 = unit.coords(3,:);
