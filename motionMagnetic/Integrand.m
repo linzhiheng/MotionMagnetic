@@ -41,5 +41,7 @@ function Integrand = Integrand(Xi,Eta,EMField,unit,radius)
     for i = 1:3
         Integrand(i) = Cumulate(i)*(J/R3);
     end
-    
+    if radius == [0,0]
+        Integrand = [0,0,0];
+    end
 end
