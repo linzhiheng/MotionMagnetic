@@ -8,7 +8,7 @@ function Integrand = Integrand(Xi,Eta,EMField,unit,radius)
     %¼ì²é½áÊø
     
     x = radius(1)+Xi;
-    z = radius(2)+Eta;
+    z = radius(2)-Eta;                                                   %z = radius(2)+Eta;
     R3 = (sqrt( x^2+z^2 ))^3;
     
     J = getJacobi(Xi,Eta,unit.coords);
