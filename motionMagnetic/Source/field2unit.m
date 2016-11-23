@@ -9,8 +9,8 @@ function unit = field2unit(field)
     
     Origin.x = 0;
     Origin.z = 0;
-    dx = 10;
-    dz = 8;
+    dx = 1;
+    dz = 1;
     for j = 1:nColumn-1
         for i = 1:nRow-1
             x1 = (j-1)*dx + Origin.x;

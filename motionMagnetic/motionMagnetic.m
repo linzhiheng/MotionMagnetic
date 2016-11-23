@@ -1,7 +1,11 @@
 % motionMagnetic
 addpath(genpath(pwd));
 
+field = formVelocityField(1, 0.1);
 unit = field2unit(field);
+
+global EMField Sigma Zeta Ak;
+[EMField, Sigma, Zeta, Ak] = readParameter;
 
 point = [0,0];
 

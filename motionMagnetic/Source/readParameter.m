@@ -34,6 +34,6 @@ function [EMField, Conductivity, Zeta, Ak] = readParameter
     validateattributes(Ak,{'numeric'},{'>=',-1,'<=',1},'readParameter','Ak',4);
     Msg = fgets(fid);
     Msg = fgets(fid);
-
+    
     fclose(fid);    
 end

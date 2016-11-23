@@ -17,14 +17,16 @@ function centre = getCenterCoords(C1,C2,varargin)
     C = p.Results.C1;
     Cdiagonal = p.Results.C2;
     
-    if(C(1)==Cdiagonal(1)||C(2)==Cdiagonal(2))
+    x = 1;
+    z = 2;
+    if(C(x)==Cdiagonal(x)||C(z)==Cdiagonal(z))
         Cdiagonal = p.Results.C3;
-        if(C(1)==Cdiagonal(1)||C(2)==Cdiagonal(2))
+        if(C(x)==Cdiagonal(x)||C(z)==Cdiagonal(z))
             Cdiagonal = p.Results.C4;
         end
     end
     
     centre = [0,0];
-    centre(1) = ( C(1)+Cdiagonal(1) )/2;
-    centre(2) = ( C(2)+Cdiagonal(2) )/2;
+    centre(x) = ( C(x)+Cdiagonal(x) )/2;
+    centre(z) = ( C(z)+Cdiagonal(z) )/2;
 end
