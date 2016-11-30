@@ -22,7 +22,15 @@ function Bxyz = unitIntegrate(unit,point)
 %
 %     [EMField, Sigma, Zeta, Ak] = readParameter;
 
-    global EMField Sigma Zeta Ak
+%     global earthField Sigma Zeta Ak
+    [earthField, Sigma, Zeta, Ak] = readParameter;
+    totalEarthField = 5*10^-5;
+    dipEarthField = 70;
+    inclinationEarthField = 0;
+    earthField(1) = totalEarthField*cosd(dipEarthField)*cosd(inclinationEarthField);
+    earthField(2) = totalEarthField*cosd(dipEarthField)*sind(inclinationEarthField);
+    earthField(3) = totalEarthField*sind(dipEarthField);
+
     
     c1 = unit.coords(1,:);
     c2 = unit.coords(2,:);
@@ -36,7 +44,7 @@ function Bxyz = unitIntegrate(unit,point)
     nij = length(Zeta);
     for i = 1:nij
         for  j = 1:nij
-            Bxyz = Bxyz + Ak(i)*Ak(j)*Integrand(Zeta(i),Zeta(j),EMField,unit,radius)*Sigma*(10^-7);
+            Bxyz = Bxyz + Ak(i)*Ak(j)*Integrand(Zeta(i),Zeta(j),earthField,unit,radius)*Sigma*(10^-7);
         end
     end
     

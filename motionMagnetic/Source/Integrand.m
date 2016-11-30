@@ -1,8 +1,8 @@
-function Integrand = Integrand(Xi,Eta,EMField,unit,radius)
+function Integrand = Integrand(Xi,Eta,earthField,unit,radius)
     %输入检查，输入的Xi和Eta需要在[-1,1]之间。
     validateattributes(Xi,{'numeric'},{'>=',-1,'<=',1},'Integrand','Xi',1);
     validateattributes(Eta,{'numeric'},{'>=',-1,'<=',1},'Integrand','Eta',2);
-    validateattributes(EMField,{'numeric'},{'numel',3},'Integrand','EMField',3);
+    validateattributes(earthField,{'numeric'},{'numel',3},'Integrand','earthField',3);
     validateattributes(unit,{'struct'},{'size',[1,1,1]},'Integrand','unit',4);
     validateattributes(radius,{'numeric'},{'numel',2},'Integrand','radius',5);
     %检查结束
@@ -26,9 +26,9 @@ function Integrand = Integrand(Xi,Eta,EMField,unit,radius)
         Vz(i) = unit.velocity(i,2);
     end
     
-    Fx = EMField(1);
-    Fy = EMField(2);
-    Fz = EMField(3);
+    Fx = earthField(1);
+    Fy = earthField(2);
+    Fz = earthField(3);
     
     Cumulate = [0,0,0];
     for i = 1:4
