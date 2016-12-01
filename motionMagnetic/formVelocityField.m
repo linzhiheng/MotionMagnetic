@@ -4,7 +4,7 @@ function velocityField = formVelocityField(frequency, depth)
     waveHeight = 1;
     gravity = 9.8;
     t = 0;
-    width = 2000;
+    width = 1000;
     
     a = waveHeight;
     g = gravity;
@@ -17,10 +17,10 @@ function velocityField = formVelocityField(frequency, depth)
 % %     velocity_z = @(z,x,t) -1 * ( (a*g*k)/w ) * ( sinh(k*(d-z))/cosh(k*d) ) * cos( (k*x) - (w*t) );
     
     velocityField = zeros(depth+1,width+1,2);
-    for ix = 0:width
+    for ix = (-1*width):width
         for iz = 0:depth
-            velocityField(iz+1,ix+1,1) = velocity_x(iz,ix,t);
-            velocityField(iz+1,ix+1,2) = velocity_z(iz,ix,t);
+            velocityField(iz+1,ix+1+width,1) = velocity_x(iz,ix,t);
+            velocityField(iz+1,ix+1+width,2) = velocity_z(iz,ix,t);
         end
     end
     
