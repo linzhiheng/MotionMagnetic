@@ -1,10 +1,9 @@
-function velocityField = formVelocityField(frequency, depth)
+function velocityField = formVelocityField(frequency, depth,width)
     format long 
     
     waveHeight = 1;
     gravity = 9.8;
     t = 0;
-    width = 1000;
     
     a = waveHeight;
     g = gravity;

@@ -34,7 +34,7 @@ function Integrand = Integrand(Xi,Eta,earthField,unit,radius)
     for i = 1:4
         Cumulate(1) = Cumulate(1)+N(i)*( Vz(i)*Fx-Vx(i)*Fz )*z;
         Cumulate(2) = Cumulate(2)+N(i)*( Vx(i)*Fy*x + Vz(i)*Fy*z );
-        Cumulate(3) = Cumulate(3)+N(i)*( Vx(i)*Fy-Vz(i)*Fx )*x;
+        Cumulate(3) = Cumulate(3)+N(i)*( Vx(i)*Fz-Vz(i)*Fx )*x;
     end
     
     Integrand = [0,0,0];
