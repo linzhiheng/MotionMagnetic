@@ -1,11 +1,11 @@
 %motionMagnetic
-parpool(4);
+% parpool(4);
 
 addpath(genpath(pwd));
 
-frequency = 0.03;
-depth = 50;
-width = 500;
+frequency = 0.1;    %Hz
+depth = 300;    %m
+width = 1000;   %m
 velocityField = formVelocityField(frequency, depth, width);
 origin.x = -1*width;
 origin.z = 0;
@@ -14,13 +14,13 @@ unit = field2unit(velocityField,origin);
 % global earthField Sigma Zeta Ak;
 [earthField, Sigma, Zeta, Ak] = readParameter;
 parameter.earthField = earthField;
-parameter.Sigma = Sigma;
+parameter.Sigma = Sigma;    %S/m
 parameter.Zeta = Zeta;
-parameter.Ak = Ak;
+parameter.Ak = Ak; 
 
-totalEarthField = 5*10^-5;
-dipEarthField = 70;
-inclinationEarthField = 0;
+totalEarthField = 4.5*10^-5;    %T
+dipEarthField = 60; %`
+inclinationEarthField = 30; %`
 
 parameter.earthField(1) = totalEarthField*cosd(dipEarthField)*cosd(inclinationEarthField);
 parameter.earthField(2) = totalEarthField*cosd(dipEarthField)*sind(inclinationEarthField);

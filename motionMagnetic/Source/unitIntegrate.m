@@ -28,7 +28,7 @@ function Bxyz = unitIntegrate(unit,point,parameter)
     c4 = unit.coords(4,:);
     center = getCenterCoords(c1, c2, c3, c4);
     
-    radius = getRadius(point,center);
+    radius = getRadius(point,center);   %m
     
     Bxyz = [0,0,0];
     nij = length(Zeta);
