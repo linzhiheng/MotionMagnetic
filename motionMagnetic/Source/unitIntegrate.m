@@ -1,8 +1,8 @@
-function Bxyz = unitIntegrate(unit,point,parameter)
+function Bxyz = unitIntegrate(unit,point,parameters)
     %输入检查，输入的p1和p2需要是一个含有两个元素的数组
-    validateattributes(unit,{'struct'},{'size',[1,1,1]},'unitIntegrate','unit',1);
-    validateattributes(point,{'numeric'},{'numel',2},'unitIntegrate','point',2);
-    validateattributes(parameter,{'struct'},{'size',[1,1,1,1]},'unitIntegrate','parameter',3);
+%     validateattributes(unit,{'struct'},{'size',[1,1,1]},'unitIntegrate','unit',1);
+%     validateattributes(point,{'numeric'},{'numel',2},'unitIntegrate','point',2);
+%     validateattributes(parameters,{'struct'},{'size',[1,1,1,1,1]},'unitIntegrate','parameters',3);
     %检查结束
     
 %     积分参数    
@@ -17,16 +17,17 @@ function Bxyz = unitIntegrate(unit,point,parameter)
 %     earthField(2) = totalEarthField*cosd(dipEarthField)*sind(inclinationEarthField);
 %     earthField(3) = totalEarthField*sind(dipEarthField);
     
-    earthField = parameter.earthField;
-    Sigma = parameter.Sigma;
-    Zeta = parameter.Zeta;
-    Ak = parameter.Ak;
+    earthField = parameters.earthField;
+    Sigma = parameters.Sigma;
+    Zeta = parameters.Zeta;
+    Ak = parameters.Ak;
+    w = parameters.w;
     
     c1 = unit.coords(1,:);
     c2 = unit.coords(2,:);
     c3 = unit.coords(3,:);
     c4 = unit.coords(4,:);
-    center = getCenterCoords(c1, c2, c3, c4);
+    center = getCenterCoords(c1, c3, c2, c4);
     
     radius = getRadius(point,center);   %m
     
@@ -34,7 +35,8 @@ function Bxyz = unitIntegrate(unit,point,parameter)
     nij = length(Zeta);
     for i = 1:nij
         for  j = 1:nij
-            Bxyz = Bxyz + Ak(i)*Ak(j)*Integrand(Zeta(i),Zeta(j),earthField,unit,radius)*Sigma*(10^-7);
+            constantTerm = Sigma*(10^-7)*2;
+            Bxyz = Bxyz + Ak(i)*Ak(j)*Integrand(Zeta(i),Zeta(j),earthField,unit,radius,w)*constantTerm;
         end
     end
     

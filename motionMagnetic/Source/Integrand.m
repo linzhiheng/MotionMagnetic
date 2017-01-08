@@ -1,4 +1,4 @@
-function Integrand = Integrand(Xi,Eta,earthField,unit,radius)
+function Integrand = Integrand(Xi,Eta,earthField,unit,radius,w)
     %输入检查，输入的Xi和Eta需要在[-1,1]之间。
     validateattributes(Xi,{'numeric'},{'>=',-1,'<=',1},'Integrand','Xi',1);
     validateattributes(Eta,{'numeric'},{'>=',-1,'<=',1},'Integrand','Eta',2);
@@ -7,9 +7,12 @@ function Integrand = Integrand(Xi,Eta,earthField,unit,radius)
     validateattributes(radius,{'numeric'},{'numel',2},'Integrand','radius',5);
     %检查结束
     
+    lightVelocity = 3*10^8; %m/s
+    
     x = radius(1)+Xi;
     z = radius(2)-Eta;                                                   %z = radius(2)+Eta;
-    R3 = (sqrt( x^2+z^2 ))^3;
+    R = sqrt( x^2+z^2 );
+    R2 = (R)^2;
     
     J = getJacobi(Xi,Eta,unit.coords);
     
@@ -37,9 +40,11 @@ function Integrand = Integrand(Xi,Eta,earthField,unit,radius)
         Cumulate(3) = Cumulate(3)+N(i)*( Vx(i)*Fz-Vz(i)*Fx )*x;
     end
     
+    c = lightVelocity;
+    temp1 = ( (R*w)/(sqrt(2)*c) )^2;
     Integrand = [0,0,0];
     for i = 1:3
-        Integrand(i) = Cumulate(i)*(J/R3);
+        Integrand(i) = Cumulate(i)*(J/R2)*(1+temp1);
     end
     if radius == [0,0]
         Integrand = [0,0,0];
