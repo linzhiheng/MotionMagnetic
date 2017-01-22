@@ -1,4 +1,4 @@
-function unit = field2unit(field,origin)
+function unit = field2unit(field,origin,dz,dx)
     %输入检查，输入的p1和p2需要是一个含有两个元素的数组
     validateattributes(field,{'numeric'},{'ndims',3},'field2unit','field',1);
     validateattributes(origin,{'struct'},{'size',[1,1]},'field2unit','origin',2);
@@ -6,12 +6,8 @@ function unit = field2unit(field,origin)
     [nRow, nColumn, nd] = size(field);
     unit(nRow-1,nColumn-1) = struct('velocity',[],'coords',[],'conductivity',[]);
     
-    conductivity = 3;
+    conductivity = 4;
     
-%     origin.x = 0;
-%     origin.z = 0;
-    dx = 1;
-    dz = 1;
     for j = 1:nColumn-1
         for i = 1:nRow-1
             x1 = (j-1)*dx + origin.x;

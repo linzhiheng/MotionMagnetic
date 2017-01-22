@@ -20,7 +20,7 @@ function centre = getCenterCoords(C1,C3,varargin)
     x = 1;
     z = 2;
     if(C(x)==Cdiagonal(x)||C(z)==Cdiagonal(z))
-        Cdiagonal = p.Results.C3;
+        Cdiagonal = p.Results.C2;
         if(C(x)==Cdiagonal(x)||C(z)==Cdiagonal(z))
             Cdiagonal = p.Results.C4;
         end
