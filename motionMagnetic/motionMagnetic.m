@@ -2,19 +2,20 @@
 clear
 clc
 
-% parpool(4);
+parpool(4);
 
 addpath(genpath(pwd));
 
+waveHeight = 2;    %m
 frequency = 0.1;    %Hz
 depth = 300;    %m
 width = 100;   %m
-dz = 10;
+dz = 1;
 dx = 1;
-velocityField = formVelocityField(frequency, depth, width, dz, dx);
+velocityField = formVelocityField(waveHeight, frequency, depth, width, dz, dx);
 
 origin.x = -1*width;
-origin.z = 0;
+origin.z = -waveHeight/2;
 unit = field2unit(velocityField, origin, dz, dx);
 
 % global earthField Sigma Zeta Ak;
@@ -45,8 +46,7 @@ parfor nP = 1:depth+1
     end
 end
 
-poolobj = gcp('nocreate');
-delete(poolobj);
+ 
  
 xlswrite('magneticField',magneticField);
 

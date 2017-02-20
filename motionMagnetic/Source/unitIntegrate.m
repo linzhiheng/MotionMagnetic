@@ -1,9 +1,9 @@
 function Bxyz = unitIntegrate(unit,point,parameter)
-    %输入检查，输入的p1和p2需要是一个含有两个元素的数组
-    validateattributes(unit,{'struct'},{'size',[1,1,1]},'unitIntegrate','unit',1);
-    validateattributes(point,{'numeric'},{'numel',2},'unitIntegrate','point',2);
-    validateattributes(parameter,{'struct'},{'size',[1,1,1,1]},'unitIntegrate','parameter',3);
-    %检查结束
+%     %输入检查，输入的p1和p2需要是一个含有两个元素的数组
+%     validateattributes(unit,{'struct'},{'size',[1,1,1]},'unitIntegrate','unit',1);
+%     validateattributes(point,{'numeric'},{'numel',2},'unitIntegrate','point',2);
+%     validateattributes(parameter,{'struct'},{'size',[1,1,1,1]},'unitIntegrate','parameter',3);
+%     %检查结束
     
 %     积分参数    
 
