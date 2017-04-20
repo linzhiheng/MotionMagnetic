@@ -2,7 +2,7 @@
 clear
 clc
 
-parpool(4);
+% parpool(4);
 
 addpath(genpath(pwd));
 
@@ -36,8 +36,8 @@ parameter.earthField(3) = totalEarthField*sind(dipEarthField);
 magneticField = zeros(depth+1,3);
 [ni, nj] = size(unit);
 
-parfor nP = 1:depth+1
-% for nP = 1:depth+1
+%parfor nP = 1:depth+1
+for nP = 1:depth+1
     point = [0,nP-1];
     for i = 1:ni
         for j = 1:nj
